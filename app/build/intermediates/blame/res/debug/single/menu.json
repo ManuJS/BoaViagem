@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "G:\\BoaViagem\\app\\build\\intermediates\\res\\merged\\debug\\menu\\viagem_menu.xml",
+        "source": "G:\\BoaViagem\\app\\src\\main\\res\\menu\\viagem_menu.xml"
+    },
+    {
+        "merged": "G:\\BoaViagem\\app\\build\\intermediates\\res\\merged\\debug\\menu\\dashbord_menu.xml",
+        "source": "G:\\BoaViagem\\app\\src\\main\\res\\menu\\dashbord_menu.xml"
+    },
+    {
+        "merged": "G:\\BoaViagem\\app\\build\\intermediates\\res\\merged\\debug\\menu\\gasto_menu.xml",
+        "source": "G:\\BoaViagem\\app\\src\\main\\res\\menu\\gasto_menu.xml"
+    }
+]
