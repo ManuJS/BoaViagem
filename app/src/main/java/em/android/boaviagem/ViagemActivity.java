@@ -148,8 +148,7 @@ public class ViagemActivity extends Activity {
 
 
     public void salvarViagem(View v){
-
-//aqui eu pego os dados da view pra por no banco
+        //aqui eu pego os dados da view pra por no banco
         String destinos = destino.getText().toString();
         long dataC = dataChegada.getTime();
         long dataS = dataSaida.getTime();
@@ -159,7 +158,6 @@ public class ViagemActivity extends Activity {
         int vn = Constantes.VIAGEM_NEGOCIOS;
 
         SQLiteDatabase db = helper.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put("destino", destinos);
         //tenho algum problema nas datas.
@@ -195,12 +193,12 @@ public class ViagemActivity extends Activity {
         startActivity(new Intent(this, DashboardActivity.class));
     }
 
-    private void removerViagem (String id){
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String where [] = new String[]{id};
-        //db.delete("GASTO", "VIAGEM_ID = ?", where);
-        db.delete("VIAGEM", "ID = ?", where);
-    }
+//    private void removerViagem (String id){
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        String where [] = new String[]{id};
+//        //db.delete("GASTO", "VIAGEM_ID = ?", where);
+//        db.delete("VIAGEM", "ID = ?", where);
+//    }
 
 
     public void selecionarOpcao(View v) {
