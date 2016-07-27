@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,7 +24,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import em.android.boaviagem.DAO.BoaViagemDAO;
 import em.android.boaviagem.DataBase.DatabaseHelper;
+import em.android.boaviagem.Modelo.Viagem;
 
 /**
  * Created by Emanuelle Menali on 05/05/2016.
@@ -31,6 +34,7 @@ import em.android.boaviagem.DataBase.DatabaseHelper;
 public class ViagemActivity extends Activity {
 
     private DatabaseHelper helper;
+    private BoaViagemDAO dao;
     private int ano, mes, dia;
     private EditText  destino, quantidadeDePessoas, orcamento;
     private RadioGroup radioGroup;
@@ -39,6 +43,7 @@ public class ViagemActivity extends Activity {
     private Date dataChegada;
     private Date dataSaida;
     private String id;
+
 
 
     @Override
@@ -148,7 +153,7 @@ public class ViagemActivity extends Activity {
 
 
     public void salvarViagem(View v){
-        //aqui eu pego os dados da view pra por no banco
+
         String destinos = destino.getText().toString();
         long dataC = dataChegada.getTime();
         long dataS = dataSaida.getTime();
@@ -157,7 +162,11 @@ public class ViagemActivity extends Activity {
         int vl =  Constantes.VIAGEM_LAZER;
         int vn = Constantes.VIAGEM_NEGOCIOS;
 
+
+
+
         SQLiteDatabase db = helper.getWritableDatabase();
+
         ContentValues values = new ContentValues();
         values.put("destino", destinos);
         //tenho algum problema nas datas.
@@ -175,14 +184,7 @@ public class ViagemActivity extends Activity {
             values.put("tipo_viagem", vn);
         }
 
-        long resultado;
-
-        if (id == null){
-           resultado = db.insert("viagem", null, values);
-        }else{
-            resultado = db.update("viagem", values, "_id = ?", new String[]{id});
-        }
-
+        long resultado = db.insert("viagem", null, values);
 
         if (resultado != -1){
             Toast.makeText(this, getString(R.string.registro_realizado), Toast.LENGTH_SHORT).show();
@@ -193,12 +195,6 @@ public class ViagemActivity extends Activity {
         startActivity(new Intent(this, DashboardActivity.class));
     }
 
-//    private void removerViagem (String id){
-//        SQLiteDatabase db = helper.getWritableDatabase();
-//        String where [] = new String[]{id};
-//        //db.delete("GASTO", "VIAGEM_ID = ?", where);
-//        db.delete("VIAGEM", "ID = ?", where);
-//    }
 
 
     public void selecionarOpcao(View v) {
@@ -234,5 +230,3 @@ public class ViagemActivity extends Activity {
         helper.close();
     }
 }
-
-
